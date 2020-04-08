@@ -245,6 +245,7 @@ call_user_func( function() {
 				private $wrapped_element_shortcode_callback;
 				private $tag;
 				private $plugin_key;
+				private $text_domain = 'content-visibility-for-divi-builder';
 
 				public function __construct($func, $tag, $plugin_key) {
 					$this->wrapped_element = $func[0];
@@ -258,12 +259,12 @@ call_user_func( function() {
 					}
 
 					$visibility_field_definition = array(
-						'label' => __( 'Content Visibility', $text_domain ),
+						'label' => __( 'Content Visibility', $this->text_domain ),
 						'type'  => 'text',
 						'option_category' => 'layout',
 						'tab_slug' => 'custom_css',
 						'toggle_slug' => 'visibility',
-						'description' => __( 'Enter a boolean expression which evaluates to true when you want to display this element, or leave blank to always display it.', $text_domain ),
+						'description' => __( 'Enter a boolean expression which evaluates to true when you want to display this element, or leave blank to always display it.', $this->text_domain ),
 						'priority' => 1,
 					);
 
@@ -329,7 +330,7 @@ call_user_func( function() {
 
 				public function __unset($name) {
 					if ( $this->wrapped_element !== null ) {
-						unset( $this->wrapped_element->$name );
+						//unset( $this->wrapped_element->$name );
 					}
 				}
 			}
